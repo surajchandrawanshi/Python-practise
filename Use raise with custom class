@@ -1,0 +1,13 @@
+class DogAteMyHomeworkError(Exception):
+    pass
+
+def submit_homework(excuse):
+    if "dog" in excuse:
+        raise DogAteMyHomeworkError("Straight F")
+    else:
+        print("Homework accepted. Good job!")
+
+try:
+    submit_homework("do")
+except DogAteMyHomeworkError as e:
+    print(f"Very funny. {e}")
