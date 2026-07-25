@@ -1,0 +1,29 @@
+class OutOfStockError(Exception):
+    pass
+
+
+inventory={
+    "pizza": 3,
+    "burger": 1,
+    "fries": 10
+}
+
+def order_food(item, quantity):
+    if item not in inventory:
+        raise KeyError("Item not found on the menu!")
+    elif inventory[item]==0:
+        raise OutOfStockError(f"Sorry, {item} is sold out!")
+    elif quantity> inventory[item]:
+        raise ValueError(f"Only {inventory[item]} left in the stock!")
+    else:
+        inventory[item]-=quantity
+        print("Order confirmed!")
+
+try:
+    order_food("burger", 2)
+except KeyError as e:
+    print(f"OOPS: {e}")
+except OutOfStockError as f:
+    print(f"OOPS: {f}")
+except ValueError as g:
+    print(f"OOPS: {g}")
