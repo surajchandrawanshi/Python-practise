@@ -1,0 +1,13 @@
+class DatabaseConnectionError(Exception):
+    pass
+
+def connect_to_db(port):
+    try:
+        port=int(port)
+    except ValueError:
+        raise DatabaseConnectionError("Invalid port number specified") from ValueError
+
+try:
+    connect_to_db("eight-zero")
+except DatabaseConnectionError as e:
+    print(f"Too bad: {e}")
